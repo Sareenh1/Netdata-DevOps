@@ -20,3 +20,42 @@ Deployed Netdata, a lightweight, open-source monitoring tool, on an AWS EC2 inst
 - Connected via SSH:
   ```bash
   ssh -i task7-key.pem ubuntu@<public-ip>
+  ````
+### 2. Installed Docker
+- Update system
+````
+sudo apt update && sudo apt upgrade -y
+````
+
+- Install Docker
+````
+sudo apt install -y docker.io
+````
+
+- Start and enable Docker
+````
+sudo systemctl start docker && sudo systemctl enable docker
+````
+
+- Add user to Docker group
+````
+sudo usermod -aG docker ubuntu
+````
+### 3. Deployed Netdata
+- Run Netdata container
+````
+docker run -d --name=netdata -p 19999:19999 netdata/netdata
+````
+
+- Verify container status
+````
+docker ps
+````
+### 4. Accessed Netdata Dashboard
+
+- Accessed at: http://<ec2-public-ip>:19999
+- Monitored metrics:
+- CPU utilization
+- Memory usage
+- Disk I/O
+- Docker container performance
